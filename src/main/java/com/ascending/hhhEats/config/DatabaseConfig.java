@@ -12,7 +12,7 @@ import java.util.Properties;
 
 @Configuration
 public class DatabaseConfig {
-    private String dburl = "jdbc:postgresql://localhost:5432/hhhEats_dev";
+    private String dburl = "jdbc:postgresql://localhost:5432/hhheats_dev";
 
     private String username = "admin";
 

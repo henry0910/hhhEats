@@ -6,30 +6,23 @@ import javax.persistence.*;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(name="users")
-public class User {
+@Table(name="courier")
+public class Courier {
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="users_id_seq")
     @SequenceGenerator(name="users_id_seq", sequenceName="users_id_seq", allocationSize=1)
     private Long id;
 
-    @Column(unique=true)
-    private String username;
+    @Column(name="courier_name")
+    private String name;
 
-    @Column(name="first_name")
-    private String firstName;
+    @Column(name="gender")
+    private String gender;
 
-    @Column(name="last_name")
-    private String lastName;
-
-    @Column(name="password")
-    private String password;
+    @Column(name="vehicle")
+    private String vehicle;
 
     @Column(name="telephone_number")
     private String telephoneNumber;
-
-    @Column(name="email_address")
-    private String email;
-
 
 }
