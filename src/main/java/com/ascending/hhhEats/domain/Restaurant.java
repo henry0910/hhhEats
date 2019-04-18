@@ -25,6 +25,15 @@ public class Restaurant {
     @Column(name="address")
     private String address;
 
+    @Column(name="city")
+    private String city;
+
+    @Column(name="state")
+    private String state;
+
+    @Column(name="zip_code")
+    private String zip_code;
+
     @Column(name="telephone_number")
     private String telephoneNumber;
 
