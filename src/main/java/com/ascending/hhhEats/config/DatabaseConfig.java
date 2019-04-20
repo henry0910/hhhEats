@@ -2,23 +2,31 @@ package com.ascending.hhhEats.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.omg.CORBA.Environment;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
+import javax.validation.Valid;
 import java.util.Properties;
 
 @Configuration
 public class DatabaseConfig {
-    private String dburl = "jdbc:postgresql://localhost:5432/hhheats_dev";
 
-    private String username = "admin";
+    @Value("${database.dburl}")
+    private  String dburl;
 
-    private String password = "password";
+    @Value("${database.username}")
+    private String username;
 
-    private String driverClass = "org.postgresql.ds.PGSimpleDataSource";
+    @Value("${database.password}")
+    private  String password;
+
+    @Value("#{shareProperties['database.driverClass']}")
+    private String driverClass;
 
     @Bean(name="dataSource")
     public DataSource getDataSource() {

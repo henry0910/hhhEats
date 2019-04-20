@@ -6,11 +6,11 @@ import javax.persistence.*;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(name="courier")
+@Table(name="Couriers")
 public class Courier {
     @Id
-    @GeneratedValue(strategy=SEQUENCE, generator="users_id_seq")
-    @SequenceGenerator(name="users_id_seq", sequenceName="users_id_seq", allocationSize=1)
+    @GeneratedValue(strategy=SEQUENCE, generator="couriers_id_seq")
+    @SequenceGenerator(name="couriers_id_seq", sequenceName="couriers_id_seq", allocationSize=1)
     private Long id;
 
     @Column(name="courier_name")

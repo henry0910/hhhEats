@@ -3,10 +3,12 @@ package com.ascending.hhhEats.domain;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(name="users")
+@Table(name="Users")
 public class User {
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="users_id_seq")
@@ -31,5 +33,6 @@ public class User {
     @Column(name="email_address")
     private String email;
 
-
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders;
 }
