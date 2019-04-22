@@ -41,4 +41,16 @@ public class Restaurant {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Order> orders;
+
+    public void setName(String Name) {
+        name = Name;
+    }
+
+    public void setTelephoneNumber(String telephone_Number) {
+        telephoneNumber = telephone_Number;
+    }
+
+    public Long getId() {
+        return this.id;
+    }
 }

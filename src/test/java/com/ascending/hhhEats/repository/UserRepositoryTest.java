@@ -11,7 +11,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import javax.jws.soap.SOAPBinding;
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -30,8 +29,7 @@ public class UserRepositoryTest {
     @Test
     @Transactional
     public void findByIdTest() {
-        User u = new User();
-        u.setUsername("tjshen");
+        User u = new User("tjshen");
         u.setEmail("tianjie.shen@rhsmith.umd.edu");
         userRepository.save(u);
         Optional<User> testUser = userRepository.findById(u.getId());

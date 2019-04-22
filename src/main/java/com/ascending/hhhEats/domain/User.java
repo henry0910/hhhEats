@@ -36,6 +36,13 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    public User() {}
+
+    public User(String username){
+        this.username=username;
+//        this.email=email;
+    }
+
     public void setUsername(String user_name) {
         username = user_name;
     }
@@ -43,6 +50,7 @@ public class User {
     public void setEmail(String email_address) {
         email = email_address;
     }
+
     public Long getId() {
         return id;
     }

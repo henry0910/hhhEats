@@ -30,4 +30,11 @@ public class Courier {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "courier", cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    public Courier() {
+        this.name = "admin";
+        this.gender = "Male";
+        this.vehicle = "Honda";
+        this.telephoneNumber = "1234567890";
+    }
+
 }
