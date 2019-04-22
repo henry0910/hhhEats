@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
-    @Query(value = "SELECT * FROM restaurants", nativeQuery = true)
+    @Query(value = "SELECT c FROM restaurants")
     List<Restaurant> findAll();
 
     @Query(value = "SELECT c FROM restaurants r where r.id = ?1")
