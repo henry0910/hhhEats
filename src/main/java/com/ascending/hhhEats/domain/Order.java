@@ -3,6 +3,7 @@ package com.ascending.hhhEats.domain;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -24,5 +25,13 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "courier_id")
     private Courier courier;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "restaurant_id")
+    private Restaurant restaurant;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
+    private List<Dish> dishes;
+
 
 }

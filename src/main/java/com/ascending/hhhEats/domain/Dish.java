@@ -4,6 +4,7 @@ package com.ascending.hhhEats.domain;
 import javax.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
@@ -24,6 +25,11 @@ public class Dish {
     @Column(name = "price")
     private BigDecimal price;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "menu_id")
+    private Menu menus;
 
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_id")
+    private Order order;
 }

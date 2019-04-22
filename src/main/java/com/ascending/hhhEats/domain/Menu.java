@@ -3,6 +3,8 @@ package com.ascending.hhhEats.domain;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -15,5 +17,8 @@ public class Menu {
 
     @Column(name = "genre")
     private String genre;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu", cascade = CascadeType.ALL)
+    private List<Dish> dishes;
 
 }

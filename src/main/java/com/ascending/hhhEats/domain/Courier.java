@@ -3,6 +3,8 @@ package com.ascending.hhhEats.domain;
 
 import javax.persistence.*;
 
+import java.util.List;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -24,5 +26,8 @@ public class Courier {
 
     @Column(name="telephone_number")
     private String telephoneNumber;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "courier", cascade = CascadeType.ALL)
+    private List<Order> orders;
 
 }
