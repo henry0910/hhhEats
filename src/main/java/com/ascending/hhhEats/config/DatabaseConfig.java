@@ -2,15 +2,18 @@ package com.ascending.hhhEats.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;
-import org.omg.CORBA.Environment;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
-import javax.validation.Valid;
 import java.util.Properties;
 
 @Configuration
@@ -32,6 +35,14 @@ public class DatabaseConfig {
     public DataSource getDataSource() {
         DataSource dataSource = createDataSource();
         return dataSource;
+    }
+
+    @Bean(name = "transactionManager")
+    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory") EntityManagerFactory emf, @Autowired DataSource ds) {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(emf);
+        transactionManager.setDataSource(ds);
+        return transactionManager;
     }
 
     @Bean(name="entityManagerFactory")
