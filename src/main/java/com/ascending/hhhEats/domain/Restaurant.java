@@ -53,4 +53,8 @@ public class Restaurant {
     public Long getId() {
         return this.id;
     }
+
+    public List<Order> getOrders() {
+        return this.orders;
+    }
 }

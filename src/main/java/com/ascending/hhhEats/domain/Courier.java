@@ -37,4 +37,8 @@ public class Courier {
         this.telephoneNumber = "1234567890";
     }
 
+    public List<Order> getOrders() {
+        return this.orders;
+    }
+
 }

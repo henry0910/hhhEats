@@ -21,4 +21,8 @@ public class Menu {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Dish> dishes;
 
+    public List<Dish> getDishes() {
+        return this.dishes;
+    }
+
 }

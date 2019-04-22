@@ -54,4 +54,8 @@ public class User {
     public Long getId() {
         return id;
     }
+
+    public List<Order> getOrders() {
+        return this.orders;
+    }
 }

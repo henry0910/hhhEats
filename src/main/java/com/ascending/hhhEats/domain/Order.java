@@ -33,5 +33,7 @@ public class Order {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
     private List<Dish> dishes;
 
-
+    public List<Dish> getDishes() {
+        return this.dishes;
+    }
 }

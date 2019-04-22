@@ -42,6 +42,7 @@ public class DatabaseConfig {
     @Bean(name="dataSource")
     public DataSource getDataSource() {
         DataSource dataSource = createDataSource();
+        logger.debug("This is a debug message");
         logger.trace("This is a trace message");
         return dataSource;
     }
