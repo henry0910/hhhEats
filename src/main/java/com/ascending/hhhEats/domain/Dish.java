@@ -32,4 +32,13 @@ public class Dish {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
+
+    public Dish() {}
+
+    public Dish(String genre, String name) {
+        this.genre=genre;
+        this.name=name;
+    }
+
+    public void setPrice(BigDecimal price) {this.price=price;}
 }

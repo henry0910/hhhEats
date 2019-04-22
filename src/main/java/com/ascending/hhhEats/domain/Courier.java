@@ -30,12 +30,18 @@ public class Courier {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "courier", cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    public Courier() {
-        this.name = "admin";
-        this.gender = "Male";
-        this.vehicle = "Honda";
-        this.telephoneNumber = "1234567890";
+    public Courier() {}
+
+    public Courier(String courierName, String telephone_Number) {
+        this.name = courierName;
+        this.telephoneNumber = telephone_Number;
     }
+
+    public void setGender(String gender) {this.gender=gender;}
+
+    public void setVehicle(String vehicle) {this.vehicle=vehicle;}
+
+    public Long getId() {return this.id;}
 
     public List<Order> getOrders() {
         return this.orders;

@@ -13,6 +13,7 @@ public interface CourierRepository extends CrudRepository<Courier, Long> {
 //    @Query(value = "SELECT c FROM couriers")
     List<Courier> findAll();
 
+    Optional<Courier> findById(Long Id);
 //    @Query(value = "SELECT x FROM couriers c WHERE c.Id = ?1")
 //    Optional<Courier> findById(Long Id);
 //
