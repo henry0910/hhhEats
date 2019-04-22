@@ -12,6 +12,8 @@ public interface DishRepository extends CrudRepository<Dish, Long> {
 //    @Query(value = "SELECT c FROM Dishes")
     List<Dish> findAll();
 
+    Optional<Dish> findById(Long Id);
+
 //    @Query(value = "SELECT c FROM Dishes d where d.Id = ?1")
 //    Optional<Dish> findById(Long Id);
 //

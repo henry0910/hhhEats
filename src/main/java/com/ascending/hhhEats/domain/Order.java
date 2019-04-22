@@ -36,4 +36,14 @@ public class Order {
     public List<Dish> getDishes() {
         return this.dishes;
     }
+
+    public Order() {}
+
+    public Order(BigDecimal amount) {this.amount=amount;}
+
+    public void setAmount(BigDecimal amount) {this.amount=amount;}
+
+    public Long getId() {return this.id;}
+
+    public BigDecimal getAmount() {return this.amount;}
 }

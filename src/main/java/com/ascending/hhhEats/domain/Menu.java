@@ -21,8 +21,16 @@ public class Menu {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "menu", cascade = CascadeType.ALL)
     private List<Dish> dishes;
 
-    public List<Dish> getDishes() {
-        return this.dishes;
-    }
+    public List<Dish> getDishes() {return this.dishes;}
+
+    public Menu() {}
+
+    public Menu(String genre) {this.genre=genre;}
+
+    public Long getId() {return this.id;}
+
+    public String getGenre() {return this.genre;}
+
+    public void setGenre(String genre) {this.genre=genre;}
 
 }

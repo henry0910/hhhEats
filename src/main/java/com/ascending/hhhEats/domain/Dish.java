@@ -40,5 +40,18 @@ public class Dish {
         this.name=name;
     }
 
+    public void setName(String name) {this.name=name;}
+
+    public void setGenre(String genre) {this.genre=genre;}
+
     public void setPrice(BigDecimal price) {this.price=price;}
+
+    public String getName() {return this.name;}
+
+    public String getGenre() {return this.genre;}
+
+    public BigDecimal getPrice() {return this.price;}
+
+    public Long getId() {return this.id;}
+
 }
