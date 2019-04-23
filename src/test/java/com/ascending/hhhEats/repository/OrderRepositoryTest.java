@@ -2,7 +2,6 @@ package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
 import com.ascending.hhhEats.domain.Order;
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +36,17 @@ public class OrderRepositoryTest {
         assertEquals(o.getId(), testOrder.get().getId());
     }
 
-//    @Test
-//    @Transactional
-//    public void findByAmountGreaterThan() {
-//        Order o = new Order();
-//        o.setAmount(BigDecimal.valueOf(64.34));
-//        List<Order> testOrder = orderRepository.findByAmountGreaterThan(o.getAmount());
-//        assertNotNull(testOrder);
-//        assertEquals(o.getAmount(), testOrder.get(0).getAmount());
-//    }
+    @Test
+    @Transactional
+    public void findByAmountGreaterThan() {
+        Order o = new Order();
+        Order o1 = new Order();
+        o.setAmount(BigDecimal.valueOf(64.34));
+        o1.setAmount(BigDecimal.valueOf(67));
+        orderRepository.save(o);
+        orderRepository.save(o1);
+        List<Order> testOrder = orderRepository.findByAmountGreaterThan(o.getAmount());
+        assertNotNull(testOrder);
+        assertEquals(1, testOrder.size());
+    }
 }
