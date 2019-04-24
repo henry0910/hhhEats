@@ -13,6 +13,8 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 //    @Query(value = "SELECT o FROM Order")
     List<Order> findAll();
 
+    Optional<Order> findById(Long id);
+
 //    @Query(value = "SELECT o FROM Order o WHERE o.amount >= ?1")
     List<Order> findByAmountGreaterThan(BigDecimal amount);
 
