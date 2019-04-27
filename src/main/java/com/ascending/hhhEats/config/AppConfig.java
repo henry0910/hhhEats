@@ -6,10 +6,13 @@ import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.FilterType;
 import org.springframework.core.io.ClassPathResource;
 
+
 @Configuration
-@ComponentScan(basePackages = "com.ascending.hhhEats")
+@ComponentScan(basePackages = "com.ascending.hhhEats",
+                excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.ascending.hhhEats.api.*"))
 public class AppConfig {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
