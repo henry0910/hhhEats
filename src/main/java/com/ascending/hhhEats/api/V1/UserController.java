@@ -41,6 +41,12 @@ public class UserController {
         return opt.get();
     }
 
+//    @RequestMapping(method = RequestMethod.GET, value = "/{Id}/order")
+//    public List<Order> getUserOrders(@PathVariable("Id") Long Id) {
+//        Optional<User> opt = userService.findById(Id);
+//        return opt.get();
+//    }
+
     @RequestMapping(method = RequestMethod.GET, params = {"username"})
     public User getUserById(@RequestParam("username") String username) {
         Optional<User> user = userService.findByUsernameIgnoreCase(username);

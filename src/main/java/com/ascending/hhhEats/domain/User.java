@@ -34,8 +34,8 @@ public class User {
     @Column(name="email_address")
     private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Order> orders;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+//    private List<Order> orders;
 
     public User() {}
 
@@ -66,11 +66,11 @@ public class User {
 
     public String getUsername() {return this.username;}
 
-    public String telephone() {return this.telephoneNumber;}
+    public String getTelephoneNumber() {return this.telephoneNumber;}
 
-    public String email() {return this.email;}
+    public String getEmail() {return this.email;}
 
-    public List<Order> getOrders() {
-        return this.orders;
-    }
+//    public List<Order> getOrders() {
+//        return this.orders;
+//    }
 }

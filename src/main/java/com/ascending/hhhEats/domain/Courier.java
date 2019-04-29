@@ -27,8 +27,8 @@ public class Courier {
     @Column(name="telephone_number")
     private String telephoneNumber;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "courier", cascade = CascadeType.ALL)
-    private List<Order> orders;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "courier", cascade = CascadeType.ALL)
+//    private List<Order> orders;
 
     public Courier() {}
 
@@ -37,14 +37,26 @@ public class Courier {
         this.telephoneNumber = telephone_Number;
     }
 
+    public void setName(String name) {this.name=name;}
+
     public void setGender(String gender) {this.gender=gender;}
 
     public void setVehicle(String vehicle) {this.vehicle=vehicle;}
 
+    public void setTelephoneNumber(String telephoneNumber) {this.telephoneNumber=telephoneNumber;}
+
     public Long getId() {return this.id;}
 
-    public List<Order> getOrders() {
-        return this.orders;
-    }
+    public String getName() {return this.name;}
+
+    public String getGender() {return this.gender;}
+
+    public String getVehicle() {return this.vehicle; }
+
+    public String getTelephoneNumber() {return this.telephoneNumber;}
+
+//    public List<Order> getOrders() {
+//        return this.orders;
+//    }
 
 }

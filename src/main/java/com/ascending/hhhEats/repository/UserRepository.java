@@ -23,8 +23,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findByUsernameIgnoreCase(String username);
 
-    @Query(value = "SELECT u FROM User u join fetch u.orders")
-    List<User> findAllWithOrders();
+//    @Query(value = "SELECT u FROM User u join fetch u.orders")
+//    List<User> findAllWithOrders();
 
 //    @Query(value = "SELECT c FROM users u WHERE u.username = ?1")
 //    List<User> findByUsername(String username);
