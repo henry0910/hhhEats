@@ -3,6 +3,7 @@ package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
 import com.ascending.hhhEats.domain.User;
+import com.ascending.hhhEats.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,15 +25,15 @@ import static junit.framework.TestCase.assertNotNull;
 @ActiveProfiles("Unit")
 public class UserRepositoryTest {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Test
     @Transactional
     public void findByIdTest() {
         User u = new User("tjshen");
         u.setEmail("tianjie.shen@rhsmith.umd.edu");
-        userRepository.save(u);
-        Optional<User> testUser = userRepository.findById(u.getId());
+        userService.save(u);
+        Optional<User> testUser = userService.findById(u.getId());
         assertNotNull(testUser);
         assertEquals(u.getId(), testUser.get().getId());
     }

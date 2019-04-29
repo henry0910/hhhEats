@@ -2,6 +2,7 @@ package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
 import com.ascending.hhhEats.domain.Dish;
+import com.ascending.hhhEats.service.DishService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.ObjectProvider;
@@ -24,7 +25,7 @@ import static junit.framework.TestCase.assertNotNull;
 @ActiveProfiles("Unit")
 public class DishRepositoryTest {
     @Autowired
-    private DishRepository dishRepository;
+    private DishService dishService;
 
     @Test
     @Transactional
@@ -32,8 +33,8 @@ public class DishRepositoryTest {
         Dish d = new Dish();
         d.setName("huiguorou");
         d.setGenre("Chuan cai");
-        dishRepository.save(d);
-        Optional<Dish> testDish = dishRepository.findById(d.getId());
+        dishService.save(d);
+        Optional<Dish> testDish = dishService.findById(d.getId());
         assertNotNull(testDish);
         assertEquals(d.getId(), testDish.get().getId());
 

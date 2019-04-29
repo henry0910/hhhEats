@@ -2,6 +2,7 @@ package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
 import com.ascending.hhhEats.domain.Order;
+import com.ascending.hhhEats.service.OrderService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,14 @@ import static junit.framework.TestCase.assertNotNull;
 @ActiveProfiles("Unit")
 public class OrderRepositoryTest {
     @Autowired
-    private OrderRepository orderRepository;
+    private OrderService orderService;
 
     @Test
     @Transactional
     public void findByIdTest() {
         Order o = new Order();
-        orderRepository.save(o);
-        Optional<Order> testOrder = orderRepository.findById(o.getId());
+        orderService.save(o);
+        Optional<Order> testOrder = orderService.findById(o.getId());
         assertNotNull(testOrder);
         assertEquals(o.getId(), testOrder.get().getId());
     }
@@ -43,9 +44,9 @@ public class OrderRepositoryTest {
         Order o1 = new Order();
         o.setAmount(BigDecimal.valueOf(64.34));
         o1.setAmount(BigDecimal.valueOf(67));
-        orderRepository.save(o);
-        orderRepository.save(o1);
-        List<Order> testOrder = orderRepository.findByAmountGreaterThan(o.getAmount());
+        orderService.save(o);
+        orderService.save(o1);
+        List<Order> testOrder = orderService.findByAmountGreaterThan(o.getAmount());
         assertNotNull(testOrder);
         assertEquals(1, testOrder.size());
     }

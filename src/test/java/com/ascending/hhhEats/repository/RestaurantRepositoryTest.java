@@ -2,6 +2,7 @@ package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
 import com.ascending.hhhEats.domain.Restaurant;
+import com.ascending.hhhEats.service.RestaurantService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import static junit.framework.TestCase.assertNotNull;
 @ActiveProfiles("Unit")
 public class RestaurantRepositoryTest {
     @Autowired
-    private RestaurantRepository restaurantRepository;
+    private RestaurantService restaurantService;
 
     @Test
     @Transactional
@@ -29,8 +30,8 @@ public class RestaurantRepositoryTest {
         Restaurant r = new Restaurant();
         r.setName("Asian Pot");
         r.setTelephoneNumber("3458263894");
-        restaurantRepository.save(r);
-        Optional<Restaurant> testRestaurant = restaurantRepository.findById(r.getId());
+        restaurantService.save(r);
+        Optional<Restaurant> testRestaurant = restaurantService.findById(r.getId());
         assertNotNull(testRestaurant);
     }
 }

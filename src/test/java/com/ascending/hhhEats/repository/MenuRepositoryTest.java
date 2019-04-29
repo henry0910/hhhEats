@@ -2,6 +2,7 @@ package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
 import com.ascending.hhhEats.domain.Menu;
+import com.ascending.hhhEats.service.MenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,15 +23,15 @@ import static junit.framework.TestCase.assertNotNull;
 @ActiveProfiles("Unit")
 public class MenuRepositoryTest {
     @Autowired
-    private MenuRepository menuRepository;
+    private MenuService menuService;
 
     @Test
     @Transactional
     public void findByIdTest() {
         Menu m = new Menu();
         m.setGenre("Asian");
-        menuRepository.save(m);
-        Optional<Menu> testMenu = menuRepository.findById(m.getId());
+        menuService.save(m);
+        Optional<Menu> testMenu = menuService.findById(m.getId());
         assertNotNull(testMenu);
         assertEquals(m.getId(), testMenu.get().getId());
     }
