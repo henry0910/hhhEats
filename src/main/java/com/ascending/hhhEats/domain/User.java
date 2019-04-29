@@ -2,6 +2,7 @@ package com.ascending.hhhEats.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -51,9 +52,23 @@ public class User {
         email = email_address;
     }
 
+    public void setFirstName(String first_Name) {firstName = first_Name;}
+
+    public void setLastName(String last_Name) {lastName = last_Name;}
+
+    public void setPassword(String pass_word) {password = pass_word;}
+
+    public void setTelephoneNumber(String telephone) {telephoneNumber = telephone;}
+
     public Long getId() {
         return id;
     }
+
+    public String getUsername() {return this.username;}
+
+    public String telephone() {return this.telephoneNumber;}
+
+    public String email() {return this.email;}
 
     public List<Order> getOrders() {
         return this.orders;
