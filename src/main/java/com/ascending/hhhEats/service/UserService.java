@@ -19,16 +19,10 @@ public class UserService extends CrudService<User,Long> {
     @Autowired
     private UserRepository userRepository;
 
-    public List<User> findAll() {
-        return userRepository.findAll();
-    }
-
     @Override
     protected CrudRepository<User, Long> getCurdRepository() {
         return this.userRepository;
     }
-
-
 
     public Optional<User> findByUsernameIgnoreCase(String username) {
         Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
