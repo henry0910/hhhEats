@@ -1,6 +1,6 @@
 package com.ascending.hhhEats.service;
 
-import com.ascending.hhhEats.domain.User;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.repository.CrudRepository;
@@ -22,12 +22,6 @@ public abstract class CrudService<T,ID> {
 
     public List<T> findAll() {
         Iterable<T> source = getCurdRepository().findAll();
-        List<T> res = new ArrayList<>();
-        source.forEach(res::add);
-//        List<T> res = new ArrayList<>();
-//        for (T t : getCurdRepository().findAll()) {
-//            res.add(t);
-//        }
-        return res;
+        return Lists.newArrayList(source);
     }
 }
