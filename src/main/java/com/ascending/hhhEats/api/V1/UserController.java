@@ -23,18 +23,21 @@ public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    //url: /api/users
     @RequestMapping(method = RequestMethod.GET)
     public List<User> getUserList() {
         logger.debug("list users");
         return userService.findAll();
     }
 
+    //url: /api/user POST
     @RequestMapping(method = RequestMethod.POST)
     public User signUpUser(@RequestBody User user) {
         userService.save(user);
         return user;
     }
 
+    //url: /api/user/Id GET
     @RequestMapping(method = RequestMethod.GET, value = "/{Id}")
     public User getUserById(@PathVariable("Id") Long Id) {
         Optional<User> opt = userService.findById(Id);
@@ -47,6 +50,7 @@ public class UserController {
 //        return opt.get();
 //    }
 
+    // url: /api/user/?username = username
     @RequestMapping(method = RequestMethod.GET, params = {"username"})
     public User getUserById(@RequestParam("username") String username) {
         Optional<User> user = userService.findByUsernameIgnoreCase(username);

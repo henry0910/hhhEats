@@ -12,6 +12,9 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
     List<Restaurant> findAll();
 
     Optional<Restaurant> findById(Long Id);
+
+    @Query(value = "select r from Restaurant r join fetch r.category where r.category.id=?1")
+    List<Restaurant> findByCategory(Long category_id);
 //    @Query(value = "SELECT c FROM restaurants r where r.city = ?1")
 //    List<Restaurant> findByCity(String city);
 //

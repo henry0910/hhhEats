@@ -1,10 +1,8 @@
 package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.domain.User;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import javax.activation.URLDataSource;
 import javax.persistence.Column;
 import java.util.Collection;
 import java.util.List;

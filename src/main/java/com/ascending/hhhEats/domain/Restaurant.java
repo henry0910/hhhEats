@@ -42,6 +42,10 @@ public class Restaurant {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.ALL)
     private List<Order> orders;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public void setName(String Name) {
         name = Name;
     }
@@ -56,5 +60,13 @@ public class Restaurant {
 
     public List<Order> getOrders() {
         return this.orders;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

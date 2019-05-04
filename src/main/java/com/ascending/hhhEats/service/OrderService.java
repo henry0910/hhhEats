@@ -2,8 +2,6 @@ package com.ascending.hhhEats.service;
 
 import com.ascending.hhhEats.domain.Order;
 import com.ascending.hhhEats.repository.OrderRepository;
-import com.sun.org.apache.bcel.internal.generic.LUSHR;
-import com.sun.tools.corba.se.idl.constExpr.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
