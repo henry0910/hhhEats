@@ -24,8 +24,8 @@ public class UserService extends CrudService<User,Long> {
         return this.userRepository;
     }
 
-    public Optional<User> findByUsernameIgnoreCase(String username) {
-        Optional<User> user = userRepository.findByUsernameIgnoreCase(username);
+    public Optional<User> findByUsername(String username) {
+        Optional<User> user = userRepository.findByUsername(username);
         return user;
     }
 }

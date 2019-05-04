@@ -53,7 +53,7 @@ public class UserController {
     // url: /api/user/?username = username
     @RequestMapping(method = RequestMethod.GET, params = {"username"})
     public User getUserById(@RequestParam("username") String username) {
-        Optional<User> user = userService.findByUsernameIgnoreCase(username);
+        Optional<User> user = userService.findByUsername(username);
         return user.get();
     }
 
