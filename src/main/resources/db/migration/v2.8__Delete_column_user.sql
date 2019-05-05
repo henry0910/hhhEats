@@ -1,0 +1,1 @@
+Alter table users delete column location;

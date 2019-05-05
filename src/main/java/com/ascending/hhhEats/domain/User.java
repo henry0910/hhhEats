@@ -1,7 +1,6 @@
 package com.ascending.hhhEats.domain;
 
 
-import org.postgis.Point;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -44,9 +43,6 @@ public class User implements UserDetails {
     @Column(name = "street")
     private String street;
 
-    @Column(name = "location")
-    private Point location;
-
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<Order> orders;
 
@@ -78,8 +74,6 @@ public class User implements UserDetails {
     public void setState(String state) {this.state=state;}
 
     public void setStreet(String street) {this.street=street;}
-
-    public void setLocation(Point location) {this.location=location;}
 
     public Long getId() {
         return id;
@@ -126,8 +120,6 @@ public class User implements UserDetails {
     public String getState() {return this.state;}
 
     public String getStreet() {return this.street;}
-
-    public Point getLocation() {return this.location;}
 
 //    public List<Order> getOrders() {
 //        return this.orders;
