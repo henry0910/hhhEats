@@ -1,15 +1,12 @@
 package com.ascending.hhhEats.domain;
 
 
+import org.postgis.Point;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-
 import java.util.Collection;
-import java.util.List;
-
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -38,6 +35,18 @@ public class User implements UserDetails {
     @Column(name="email_address")
     private String email;
 
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "location")
+    private Point location;
+
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<Order> orders;
 
@@ -49,20 +58,28 @@ public class User implements UserDetails {
     }
 
     public void setUsername(String user_name) {
-        username = user_name;
+        this.username = user_name;
     }
 
     public void setEmail(String email_address) {
-        email = email_address;
+        this.email = email_address;
     }
 
-    public void setFirstName(String first_Name) {firstName = first_Name;}
+    public void setFirstName(String first_Name) {this.firstName = first_Name;}
 
-    public void setLastName(String last_Name) {lastName = last_Name;}
+    public void setLastName(String last_Name) {this.lastName = last_Name;}
 
-    public void setPassword(String pass_word) {password = pass_word;}
+    public void setPassword(String pass_word) {this.password = pass_word;}
 
-    public void setTelephoneNumber(String telephone) {telephoneNumber = telephone;}
+    public void setTelephoneNumber(String telephone) {this.telephoneNumber = telephone;}
+
+    public void setCity(String city) {this.city=city;}
+
+    public void setState(String state) {this.state=state;}
+
+    public void setStreet(String street) {this.street=street;}
+
+    public void setLocation(Point location) {this.location=location;}
 
     public Long getId() {
         return id;
@@ -103,6 +120,14 @@ public class User implements UserDetails {
     public String getTelephoneNumber() {return this.telephoneNumber;}
 
     public String getEmail() {return this.email;}
+
+    public String getCity() {return this.city;}
+
+    public String getState() {return this.state;}
+
+    public String getStreet() {return this.street;}
+
+    public Point getLocation() {return this.location;}
 
 //    public List<Order> getOrders() {
 //        return this.orders;
