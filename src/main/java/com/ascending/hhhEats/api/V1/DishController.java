@@ -21,6 +21,7 @@ public class DishController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    // url: /api/dishes
     @RequestMapping(method = RequestMethod.GET)
     public List<Dish> getCourierList() {
         return dishService.findAll();
