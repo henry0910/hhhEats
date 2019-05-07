@@ -1,11 +1,11 @@
-package com.ascending.hhhEats.repository;
+package com.ascending.hhhEats.service;
 
 import com.ascending.hhhEats.config.AppConfig;
-import com.ascending.hhhEats.domain.Dish;
-import com.ascending.hhhEats.service.DishService;
+import com.ascending.hhhEats.domain.Category;
+import com.ascending.hhhEats.domain.Courier;
+import com.ascending.hhhEats.service.CategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,32 +13,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.Optional;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("Unit")
-public class DishServiceTest {
+public class CategoryServiceTest {
     @Autowired
-    private DishService dishService;
+    private CategoryService categoryService;
 
     @Test
     @Transactional
     public void findByIdTest() {
-        Dish d = new Dish();
-        d.setName("huiguorou");
-        d.setGenre("Chuan cai");
-        dishService.save(d);
-        Optional<Dish> testDish = dishService.findById(d.getId());
-        assertNotNull(testDish);
-        assertEquals(d.getId(), testDish.get().getId());
-
+        Category c = new Category("Asian");
+        categoryService.save(c);
+        Optional<Category> testCategory = categoryService.findById(c.getId());
+        assertNotNull(testCategory);
+        assertEquals(c.getId(), testCategory.get().getId());
     }
-
-
 }

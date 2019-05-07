@@ -20,6 +20,10 @@ public class Category {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category", cascade = CascadeType.ALL)
     private List<Restaurant> restaurants;
 
+    public Category() { this.name="default"; }
+
+    public Category(String name) {this.name=name;}
+
     public Long getId() { return this.Id; }
 
     public String getName() { return this.name; }

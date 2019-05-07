@@ -1,4 +1,4 @@
-package com.ascending.hhhEats.repository;
+package com.ascending.hhhEats.service;
 
 import com.ascending.hhhEats.config.AppConfig;
 import com.ascending.hhhEats.domain.Order;
