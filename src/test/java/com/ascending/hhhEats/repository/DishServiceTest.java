@@ -1,10 +1,11 @@
 package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
-import com.ascending.hhhEats.domain.Order;
-import com.ascending.hhhEats.service.OrderService;
+import com.ascending.hhhEats.domain.Dish;
+import com.ascending.hhhEats.service.DishService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,7 +14,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
@@ -23,31 +23,22 @@ import static junit.framework.TestCase.assertNotNull;
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("Unit")
-public class OrderRepositoryTest {
+public class DishServiceTest {
     @Autowired
-    private OrderService orderService;
+    private DishService dishService;
 
     @Test
     @Transactional
     public void findByIdTest() {
-        Order o = new Order();
-        orderService.save(o);
-        Optional<Order> testOrder = orderService.findById(o.getId());
-        assertNotNull(testOrder);
-        assertEquals(o.getId(), testOrder.get().getId());
+        Dish d = new Dish();
+        d.setName("huiguorou");
+        d.setGenre("Chuan cai");
+        dishService.save(d);
+        Optional<Dish> testDish = dishService.findById(d.getId());
+        assertNotNull(testDish);
+        assertEquals(d.getId(), testDish.get().getId());
+
     }
 
-    @Test
-    @Transactional
-    public void findByAmountGreaterThan() {
-        Order o = new Order();
-        Order o1 = new Order();
-        o.setAmount(BigDecimal.valueOf(64.34));
-        o1.setAmount(BigDecimal.valueOf(67));
-        orderService.save(o);
-        orderService.save(o1);
-        List<Order> testOrder = orderService.findByAmountGreaterThan(o.getAmount());
-        assertNotNull(testOrder);
-        assertEquals(1, testOrder.size());
-    }
+
 }

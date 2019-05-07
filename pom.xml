@@ -17,7 +17,7 @@
                         <version>5.2.4</version>
                         <configuration>
                             <driver>org.postgresql.Driver</driver>
-                            <url>jdbc:postgresql://localhost:5432/hhheats_dev</url>
+                            <url>jdbc:postgresql://localhost:5321/hhheats_dev</url>
                             <user>admin</user>
                             <password>password</password>
                             <locations>

@@ -1,7 +1,9 @@
 package com.ascending.hhhEats.api.V1;
 
+import com.ascending.hhhEats.domain.Restaurant;
 import com.ascending.hhhEats.domain.User;
 import com.ascending.hhhEats.repository.UserRepository;
+import com.ascending.hhhEats.service.RestaurantService;
 import com.ascending.hhhEats.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +22,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private RestaurantService restaurantService;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 

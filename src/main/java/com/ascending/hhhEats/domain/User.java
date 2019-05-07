@@ -1,6 +1,8 @@
 package com.ascending.hhhEats.domain;
 
 
+import org.postgis.Geometry;
+import org.postgis.Point;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -42,6 +44,9 @@ public class User implements UserDetails {
 
     @Column(name = "street")
     private String street;
+
+    @Column(columnDefinition = "geometry(Point,4326)")
+    private Point location;
 
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<Order> orders;

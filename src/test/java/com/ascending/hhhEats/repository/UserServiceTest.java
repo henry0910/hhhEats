@@ -23,7 +23,7 @@ import static junit.framework.TestCase.assertNotNull;
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("Unit")
-public class UserRepositoryTest {
+public class UserServiceTest {
     @Autowired
     private UserService userService;
 

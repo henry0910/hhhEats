@@ -37,4 +37,9 @@ public class RestaurantController {
         restaurantService.save(restaurant);
         return restaurant;
     }
+// url: /api/restaurant?city=shanghai
+    @RequestMapping(method = RequestMethod.GET, params = {"city"})
+    public List<Restaurant> getRestaurantByUserCity(@RequestParam("city") String city) {
+        return restaurantService.findByCity(city);
+    }
 }

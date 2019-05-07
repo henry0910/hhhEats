@@ -1,11 +1,10 @@
 package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
-import com.ascending.hhhEats.domain.Dish;
-import com.ascending.hhhEats.service.DishService;
+import com.ascending.hhhEats.domain.Restaurant;
+import com.ascending.hhhEats.service.RestaurantService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
@@ -13,32 +12,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.Optional;
 
-import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 @WebAppConfiguration
-@ContextConfiguration(classes = {AppConfig.class })
+@ContextConfiguration(classes = AppConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("Unit")
-public class DishRepositoryTest {
+public class RestaurantServiceTest {
     @Autowired
-    private DishService dishService;
+    private RestaurantService restaurantService;
 
     @Test
     @Transactional
     public void findByIdTest() {
-        Dish d = new Dish();
-        d.setName("huiguorou");
-        d.setGenre("Chuan cai");
-        dishService.save(d);
-        Optional<Dish> testDish = dishService.findById(d.getId());
-        assertNotNull(testDish);
-        assertEquals(d.getId(), testDish.get().getId());
-
+        Restaurant r = new Restaurant();
+        r.setName("Asian Pot");
+        r.setTelephoneNumber("3458263894");
+        restaurantService.save(r);
+        Optional<Restaurant> testRestaurant = restaurantService.findById(r.getId());
+        assertNotNull(testRestaurant);
     }
-
-
 }

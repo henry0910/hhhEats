@@ -13,7 +13,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("Unit")
-public class CategoryRespositoryTest {
+public class CategoryServiceTest {
     @Autowired
     private CategoryService categoryService;
 }

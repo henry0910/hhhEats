@@ -1,11 +1,12 @@
 package com.ascending.hhhEats.repository;
 
 import com.ascending.hhhEats.config.AppConfig;
-import com.ascending.hhhEats.domain.Restaurant;
-import com.ascending.hhhEats.service.RestaurantService;
+import com.ascending.hhhEats.domain.Courier;
+import com.ascending.hhhEats.service.CourierService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -15,23 +16,27 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static junit.framework.TestCase.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 @WebAppConfiguration
-@ContextConfiguration(classes = AppConfig.class)
+@ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("Unit")
-public class RestaurantRepositoryTest {
+public class CourierServiceTest {
     @Autowired
-    private RestaurantService restaurantService;
+    private CourierService courierService;
 
     @Test
     @Transactional
     public void findByIdTest() {
-        Restaurant r = new Restaurant();
-        r.setName("Asian Pot");
-        r.setTelephoneNumber("3458263894");
-        restaurantService.save(r);
-        Optional<Restaurant> testRestaurant = restaurantService.findById(r.getId());
-        assertNotNull(testRestaurant);
+        Courier c = new Courier("tjshen", "123454");
+        c.setGender("Male");
+        c.setVehicle("Honda");
+        courierService.save(c);
+        Optional<Courier> testCourier = courierService.findById(c.getId());
+        assertNotNull(testCourier);
+        assertEquals(c.getId(), testCourier.get().getId());
+
     }
+
 }
