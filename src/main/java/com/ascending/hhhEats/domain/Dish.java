@@ -43,6 +43,8 @@ public class Dish {
 
     public void setPrice(BigDecimal price) {this.price=price;}
 
+    public void setOrder(Order order) {this.order=order;}
+
     public String getName() {return this.name;}
 
     public String getGenre() {return this.genre;}
@@ -50,5 +52,7 @@ public class Dish {
     public BigDecimal getPrice() {return this.price;}
 
     public Long getId() {return this.id;}
+
+    public Order getOrder() {return this.order;}
 
 }

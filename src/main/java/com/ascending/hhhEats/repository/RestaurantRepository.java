@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 //    @Query(value = "SELECT c FROM restaurants")
+//    @Query(value = "select r from Restaurant r join fetch r.orders")
     List<Restaurant> findAll();
 
     Optional<Restaurant> findById(Long Id);

@@ -72,6 +72,13 @@ public class Restaurant {
 
     public void setLevel(String level) {this.level=level;}
 
+    public void setAddress(String address) {this.address=address;}
+
+    public void setCity(String city) {this.city=city;}
+
+    public void setState(String state) {this.state=state;}
+
+    public void setZip_code(String zip_code) {this.zip_code=zip_code;}
 
     public Long getId() {
         return this.id;
@@ -80,6 +87,22 @@ public class Restaurant {
     public List<Order> getOrders() {
         return this.orders;
     }
+
+    public String getName() {return this.name;}
+
+    public String getGenre() {return this.genre;}
+
+    public String getLevel() {return this.level;}
+
+    public String getAddress() {return this.address;}
+
+    public String getCity() {return this.city;}
+
+    public String getState() {return this.state;}
+
+    public String getZip_code() {return this.zip_code;}
+
+    public String getTelephoneNumber() {return this.telephoneNumber;}
 
     public Category getCategory() {
         return category;
