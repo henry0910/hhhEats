@@ -37,7 +37,7 @@ public class CourierController {
 
     //url: /api/courier/ POST
     @RequestMapping(method = RequestMethod.POST)
-    public Courier createNewOrder(@RequestBody Courier courier) {
+    public Courier createNewCourier(@RequestBody Courier courier) {
         courierService.save(courier);
         return courier;
     }

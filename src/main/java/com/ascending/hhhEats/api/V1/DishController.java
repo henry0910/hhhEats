@@ -21,17 +21,19 @@ public class DishController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    // url: /api/dishes
+    // url: /api/dishes GET
     @RequestMapping(method = RequestMethod.GET)
     public List<Dish> getCourierList() {
         return dishService.findAll();
     }
 
+    // url: /api/dish/Id GET
     @RequestMapping(method = RequestMethod.GET, value = "/{Id}")
     public Optional<Dish> getCourierById(@PathVariable("Id") Long Id) {
         return dishService.findById(Id);
     }
 
+    // url: /api/dish POST
     @RequestMapping(method = RequestMethod.POST)
     public Dish createNewDish(@RequestBody Dish Dish) {
         dishService.save(Dish);

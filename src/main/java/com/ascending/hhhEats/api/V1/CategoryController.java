@@ -21,21 +21,21 @@ public class CategoryController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    //url: /api/courier
+    //url: /api/categories GET
     @RequestMapping(method = RequestMethod.GET)
-    public List<Category> getCourierList() {
+    public List<Category> getCategoryList() {
         return categoryService.findAll();
     }
 
-    //url: /api/courier/Id
+    //url: /api/category/Id GET
     @RequestMapping(method = RequestMethod.GET, value = "/{Id}")
     public Optional<Category> getCourierById(@PathVariable("Id") Long Id) {
         return categoryService.findById(Id);
     }
 
-    //url: /api/courier/ POST
+    //url: /api/category/ POST
     @RequestMapping(method = RequestMethod.POST)
-    public Category createNewOrder(@RequestBody Category category) {
+    public Category createNewCategory(@RequestBody Category category) {
         categoryService.save(category);
         return category;
     }

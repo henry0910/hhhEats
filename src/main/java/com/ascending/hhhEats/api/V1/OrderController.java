@@ -22,15 +22,15 @@ public class OrderController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    //url: /api/orders
+    //url: /api/orders GET
     @RequestMapping(method = RequestMethod.GET)
-    public List<Order> getCourierList() {
+    public List<Order> getOrderList() {
         return orderService.findAll();
     }
 
     //url: /api/order/Id
     @RequestMapping(method = RequestMethod.GET, value = "/{Id}")
-    public Optional<Order> getCourierById(@PathVariable("Id") Long Id) {
+    public Optional<Order> getOrderById(@PathVariable("Id") Long Id) {
         return orderService.findById(Id);
     }
 

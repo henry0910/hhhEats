@@ -38,4 +38,13 @@ public class UserServiceTest {
         assertEquals(u.getId(), testUser.get().getId());
     }
 
+    @Test
+    @Transactional
+    public void findByUsernameTest() {
+        User u = new User("tjshen");
+        userService.save(u);
+        Optional<User> testUser = userService.findByUsername(u.getUsername());
+        assertEquals(u.getUsername(), testUser.get().getUsername());
+    }
+
 }
