@@ -39,7 +39,10 @@ public class Order {
 
     public Order() {}
 
-    public Order(BigDecimal amount) {this.amount=amount;}
+    public Order(BigDecimal amount, User user) {
+        this.amount=amount;
+        this.user=user;
+    }
 
     public void setAmount(BigDecimal amount) {this.amount=amount;}
 

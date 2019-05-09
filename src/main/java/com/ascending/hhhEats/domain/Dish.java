@@ -31,9 +31,10 @@ public class Dish {
 
     public Dish() {}
 
-    public Dish(String genre, String name) {
+    public Dish(String genre, String name, BigDecimal price) {
         this.genre=genre;
         this.name=name;
+        this.price=price;
     }
 
     public void setName(String name) {this.name=name;}

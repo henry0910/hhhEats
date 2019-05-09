@@ -1,6 +1,8 @@
 package com.ascending.hhhEats.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.List;
@@ -40,6 +42,7 @@ public class Restaurant {
     private String telephoneNumber;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "restaurant", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Order> orders;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -58,12 +61,17 @@ public class Restaurant {
     }
 
     public void setName(String Name) {
-        name = Name;
+        this.name = Name;
     }
 
     public void setTelephoneNumber(String telephone_Number) {
         telephoneNumber = telephone_Number;
     }
+
+    public void setGenre(String genre) {this.genre=genre;}
+
+    public void setLevel(String level) {this.level=level;}
+
 
     public Long getId() {
         return this.id;
