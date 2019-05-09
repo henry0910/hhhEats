@@ -46,6 +46,17 @@ public class Restaurant {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    public Restaurant() {this.name="default";}
+
+    public Restaurant(String name, String genre, String level, String address, String telephoneNumber, Category category) {
+        this.name=name;
+        this.genre=genre;
+        this.level=level;
+        this.address=address;
+        this.telephoneNumber=telephoneNumber;
+        this.category=category;
+    }
+
     public void setName(String Name) {
         name = Name;
     }

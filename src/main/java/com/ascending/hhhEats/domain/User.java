@@ -80,6 +80,8 @@ public class User implements UserDetails {
 
     public void setStreet(String street) {this.street=street;}
 
+    public void setLocation(Point location) {this.location=location;}
+
     public Long getId() {
         return id;
     }
@@ -125,6 +127,8 @@ public class User implements UserDetails {
     public String getState() {return this.state;}
 
     public String getStreet() {return this.street;}
+
+    public Point getLocation() {return this.location;}
 
 //    public List<Order> getOrders() {
 //        return this.orders;
