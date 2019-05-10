@@ -1,0 +1,1 @@
+Alter table users add column account_non_expired boolean not null default true;

@@ -48,6 +48,18 @@ public class User implements UserDetails, Serializable {
     @Column(name = "street")
     private String street;
 
+    @Column(name = "account_non_expired")
+    private boolean AccountNonExpired;
+
+    @Column(name = "account_non_locked")
+    private boolean AccountNonLocked;
+
+    @Column(name = "credentials_non_expired")
+    private boolean CredentialsNonExpired;
+
+    @Column(name = "enabled")
+    private boolean Enabled;
+
 //    @JsonIgnore
 //    @Type(type = "org.hibernate.spatial.GeometryType")
 //    private Point location;
@@ -98,6 +110,8 @@ public class User implements UserDetails, Serializable {
     public boolean isEnabled() {
         return true;
     }
+
+
 
     public void setUsername(String username) {
         this.username = username;
