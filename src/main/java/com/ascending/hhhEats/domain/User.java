@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.List;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
@@ -60,6 +62,10 @@ public class User implements UserDetails, Serializable {
     @Column(name = "enabled")
     private boolean Enabled;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonIgnore
+    private List<Authority> authorities;
+
 //    @JsonIgnore
 //    @Type(type = "org.hibernate.spatial.GeometryType")
 //    private Point location;
@@ -81,8 +87,10 @@ public class User implements UserDetails, Serializable {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.authorities;
     }
+
+    public void setAuthorities(List<Authority> authorities) {this.authorities=authorities;}
 
     @Override
     public String getPassword() {

@@ -34,7 +34,7 @@ public class UserController {
     }
 
     //url: /api/user POST
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public User signUpUser(@RequestBody User user) {
         userService.createUser(user);
         return user;
