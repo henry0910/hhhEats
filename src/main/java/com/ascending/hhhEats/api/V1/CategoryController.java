@@ -39,4 +39,12 @@ public class CategoryController {
         categoryService.save(category);
         return category;
     }
+
+    //url: /api/category?name=name POST
+    @RequestMapping(method = RequestMethod.POST, params = {"name"})
+    public Category createNewCategoryByParam(@RequestParam("name") String name) {
+        Category category = new Category(name);
+        categoryService.save(category);
+        return category;
+    }
 }

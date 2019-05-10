@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CategoryRepository extends CrudRepository<Category, Long> {
-//    @Query(value = "select c from Category c join fetch all properties ")
+    @Query("select c from Category c join fetch c.restaurants")
     List<Category> findAll();
 
     Optional<Category> findById(Long Id);
