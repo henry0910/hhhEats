@@ -25,9 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/api/users/login","/api/user/login","/api/users/signup").permitAll()
-                .and()
-                .authorizeRequests().antMatchers("/api/**").hasAnyRole("REGISTERED_USER","ADMIN", "USER")
+        http.csrf().disable().authorizeRequests().antMatchers("/api/users/login","/api/user/login","/api/users/signup","/api/users","/api/orders").permitAll()
+                .and().authorizeRequests().antMatchers("/api/**").hasAnyRole("REGISTERED_USER","ADMIN", "USER")
                 .and().formLogin();
 //                    .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint);
     }

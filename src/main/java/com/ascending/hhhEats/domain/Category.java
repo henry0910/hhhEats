@@ -7,7 +7,7 @@ import java.util.List;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "Categories")
 public class Category {
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="categories_id_seq")

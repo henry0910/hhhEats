@@ -1,18 +1,21 @@
 package com.ascending.hhhEats.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.Type;
 import org.postgis.Geometry;
 import org.postgis.Point;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Collection;
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Entity
 @Table(name="Users")
-public class User implements UserDetails {
+public class User implements UserDetails, Serializable {
     @Id
     @GeneratedValue(strategy=SEQUENCE, generator="users_id_seq")
     @SequenceGenerator(name="users_id_seq", sequenceName="users_id_seq", allocationSize=1)
@@ -45,8 +48,9 @@ public class User implements UserDetails {
     @Column(name = "street")
     private String street;
 
-    @Column(columnDefinition = "geometry(Point,4326)")
-    private Point location;
+//    @JsonIgnore
+//    @Type(type = "org.hibernate.spatial.GeometryType")
+//    private Point location;
 
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<Order> orders;
@@ -58,29 +62,6 @@ public class User implements UserDetails {
 //        this.email=email;
     }
 
-    public void setUsername(String user_name) {
-        this.username = user_name;
-    }
-
-    public void setEmail(String email_address) {
-        this.email = email_address;
-    }
-
-    public void setFirstName(String first_Name) {this.firstName = first_Name;}
-
-    public void setLastName(String last_Name) {this.lastName = last_Name;}
-
-    public void setPassword(String pass_word) {this.password = pass_word;}
-
-    public void setTelephoneNumber(String telephone) {this.telephoneNumber = telephone;}
-
-    public void setCity(String city) {this.city=city;}
-
-    public void setState(String state) {this.state=state;}
-
-    public void setStreet(String street) {this.street=street;}
-
-    public void setLocation(Point location) {this.location=location;}
 
     public Long getId() {
         return id;
@@ -118,19 +99,78 @@ public class User implements UserDetails {
         return true;
     }
 
-    public String getTelephoneNumber() {return this.telephoneNumber;}
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getEmail() {return this.email;}
+    public String getFirstName() {
+        return firstName;
+    }
 
-    public String getCity() {return this.city;}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getState() {return this.state;}
+    public String getLastName() {
+        return lastName;
+    }
 
-    public String getStreet() {return this.street;}
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    public Point getLocation() {return this.location;}
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-//    public List<Order> getOrders() {
+    public String getTelephoneNumber() {
+        return telephoneNumber;
+    }
+
+    public void setTelephoneNumber(String telephoneNumber) {
+        this.telephoneNumber = telephoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+//    public Point getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(Point location) {
+//        this.location = location;
+//    }
+    //    public List<Order> getOrders() {
 //        return this.orders;
 //    }
 }

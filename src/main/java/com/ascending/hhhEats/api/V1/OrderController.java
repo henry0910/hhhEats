@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Controller
 @ResponseBody
-@RequestMapping(value = {"/api/orders", "/api/user"}, produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = {"/api/orders", "/api/order"}, produces = MediaType.APPLICATION_JSON_VALUE)
 public class OrderController {
     @Autowired
     private OrderService orderService;
@@ -37,6 +37,7 @@ public class OrderController {
     //url: /api/order  POST
     @RequestMapping(method = RequestMethod.POST)
     public Order createNewOrder(@RequestBody Order order) {
+        logger.info("create order controller");
         orderService.save(order);
         return order;
     }

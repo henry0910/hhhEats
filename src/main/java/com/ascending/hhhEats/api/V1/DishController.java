@@ -35,8 +35,8 @@ public class DishController {
 
     // url: /api/dish POST
     @RequestMapping(method = RequestMethod.POST)
-    public Dish createNewDish(@RequestBody Dish Dish) {
-        dishService.save(Dish);
-        return Dish;
+    public Dish createNewDish(@RequestBody Dish dish) {
+        dishService.save(dish);
+        return dish;
     }
 }
