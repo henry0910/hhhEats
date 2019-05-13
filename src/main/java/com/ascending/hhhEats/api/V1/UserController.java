@@ -33,10 +33,16 @@ public class UserController {
         return userService.findAll();
     }
 
-    //url: /api/user POST
+    //url: /api/user/signup POST
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public User signUpUser(@RequestBody User user) {
         userService.createUser(user);
+        return user;
+    }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public User loginUser(@RequestBody User user) {
+        logger.info(user.getUsername() + "Has been logged in successfully");
         return user;
     }
 
