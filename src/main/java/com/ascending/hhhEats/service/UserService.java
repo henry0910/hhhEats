@@ -1,5 +1,6 @@
 package com.ascending.hhhEats.service;
 
+import com.ascending.hhhEats.domain.Authority;
 import com.ascending.hhhEats.domain.User;
 import com.ascending.hhhEats.repository.UserRepository;
 import org.slf4j.Logger;
@@ -22,6 +23,9 @@ public class UserService extends CrudService<User,Long> {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private AuthorityService authorityService;
+
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
     @Override
@@ -38,7 +42,12 @@ public class UserService extends CrudService<User,Long> {
     public User createUser(User newUser) {
         String encodedPass = encoder.encode(newUser.getPassword());
         newUser.setPassword(encodedPass);
+        Authority a = new Authority();
         save(newUser);
+        a.setAuthority("REGISTERED_USER");
+        a.setUser(newUser);
+        authorityService.save(a);
+//        newUser.setAuthorities("Registered_user");
         return newUser;
     }
 

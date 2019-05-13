@@ -35,7 +35,11 @@ public class Authority implements GrantedAuthority {
     @Override
     public String getAuthority() { return this.name; }
 
+    public Long getId() {return this.Id;}
+
     public void setAuthority(String name) {this.name=name;}
+
+    public void setUser(User newUser) {this.user=newUser;}
 
     public User getUser() {return this.user;}
 

@@ -43,6 +43,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public User loginUser(@RequestBody User user) {
         logger.info(user.getUsername() + "Has been logged in successfully");
+        logger.info(user.getPassword() + "Has been logged in successfully");
         return user;
     }
 

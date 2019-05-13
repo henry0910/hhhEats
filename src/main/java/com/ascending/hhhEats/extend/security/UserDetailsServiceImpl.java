@@ -29,13 +29,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         logger.debug("This is load user by username.");
         User domainUser = userService.findByUsername(s).get();
-        return domainUser;
+        return setUserAuthority(domainUser);
     }
 
-    public UserDetails setUserAuthority(String s) {
-        User dominUser = userService.findByUsername(s).get();
-        List<Authority> authorities = authorityService.findAuthorityByUser(dominUser);
-        dominUser.setAuthorities(authorities);
-        return dominUser;
+    private UserDetails setUserAuthority(User user) {
+        List<Authority> authorities = authorityService.findAuthorityByUser(user);
+        user.setAuthorities(authorities);
+        return user;
     }
 }

@@ -33,6 +33,7 @@ public class User implements UserDetails, Serializable {
     private String lastName;
 
     @Column(name="password")
+    @JsonIgnore
     private String password;
 
     @Column(name="telephone_number")
@@ -73,7 +74,7 @@ public class User implements UserDetails, Serializable {
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 //    private List<Order> orders;
 
-    public User() {}
+    public User() { }
 
     public User(String username){
         this.username=username;
@@ -184,6 +185,13 @@ public class User implements UserDetails, Serializable {
     public void setStreet(String street) {
         this.street = street;
     }
+
+//    public void setAuthorities(String auth) {
+//        Authority a = new Authority();
+//        a.setAuthority(auth);
+//        a.setUser(this);
+//        this.authorities.add(a);
+//    }
 
 //    public Point getLocation() {
 //        return location;
