@@ -2,6 +2,7 @@ package com.ascending.hhhEats.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.Type;
 import org.postgis.Geometry;
 import org.postgis.Point;
@@ -33,7 +34,6 @@ public class User implements UserDetails, Serializable {
     private String lastName;
 
     @Column(name="password")
-    @JsonIgnore
     private String password;
 
     @Column(name="telephone_number")
@@ -94,6 +94,7 @@ public class User implements UserDetails, Serializable {
     public void setAuthorities(List<Authority> authorities) {this.authorities=authorities;}
 
     @Override
+    @JsonIgnore
     public String getPassword() {
         return this.password;
     }
@@ -142,6 +143,7 @@ public class User implements UserDetails, Serializable {
         this.lastName = lastName;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }
