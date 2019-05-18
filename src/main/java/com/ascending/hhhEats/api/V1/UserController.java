@@ -2,8 +2,10 @@ package com.ascending.hhhEats.api.V1;
 
 import com.ascending.hhhEats.domain.AuthenticationRequest;
 import com.ascending.hhhEats.domain.User;
+import com.ascending.hhhEats.extend.security.JwtTokenUtil;
 import com.ascending.hhhEats.service.RestaurantService;
 import com.ascending.hhhEats.service.UserService;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,6 +35,9 @@ public class UserController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -72,7 +78,19 @@ public class UserController {
             );
             final Authentication authentication = authenticationManager.authenticate(notFullyAuthenticated);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            return ResponseEntity.ok("login successfully");
+            final UserDetails userDetails = userService.findByUsername(authenticationRequest.getUsername()).get();
+            final String token = jwtTokenUtil.generateToken(userDetails);
+            return ResponseEntity.ok(token);
+//            try {
+//                final UserDetails userDetails = userService.findByUsername(authenticationRequest.getUsername()).get();
+//                final String token = jwtTokenUtil.generateToken(userDetails);
+//                return ResponseEntity.ok(token);
+//            }
+//            catch (NotFoundException e) {
+//                logger.error("System can't find user by username", e);
+//                return ResponseEntity.notFound().build();
+//            }
+//            return ResponseEntity.ok("login successfully");
         }
         catch (AuthenticationException e) {
             logger.error("System can't find user nby email or username", e);
