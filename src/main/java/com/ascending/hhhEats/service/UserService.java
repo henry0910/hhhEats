@@ -38,7 +38,7 @@ public class UserService extends CrudService<User,Long> {
         newUser.setPassword(encodedPass);
         Authority a = new Authority();
         this.save(newUser);
-        a.setAuthority("REGISTERED_USER");
+        a.setAuthority("ROLE_REGISTERED_USER");
         a.setUser(newUser);
         authorityService.save(a);
 //        newUser.setAuthorities("Registered_user");
