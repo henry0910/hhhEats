@@ -77,6 +77,12 @@ public class JwtTokenUtil {
                 );
     }
 
+    public Map<String, String> maptoken(String token) {
+        Map<String, String> map = new HashMap<>();
+        map.put("token", token);
+        return map;
+    }
+
     private String generateToken(Map<String, Object> claims) {
         return Jwts.builder()
                 .setClaims(claims)

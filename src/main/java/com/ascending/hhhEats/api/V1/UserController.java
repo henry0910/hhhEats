@@ -89,9 +89,7 @@ public class UserController {
             try {
                 final UserDetails userDetails = userService.findByUsername(authenticationRequest.getUsername()).get();
                 final String token = jwtTokenUtil.generateToken(userDetails);
-                Map<String, String> res = new HashMap<>();
-                res.put("token",token);
-                return ResponseEntity.ok(res);
+                return ResponseEntity.ok(jwtTokenUtil.maptoken(token));
             }
             catch (NotFoundException ex) {
                 logger.error("System can't find user by username", ex);
