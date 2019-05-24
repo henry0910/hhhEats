@@ -16,7 +16,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import javax.transaction.Transactional;
 
 import static junit.framework.TestCase.assertNotNull;
-import static org.junit.Assert.assertEquals;
 
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class })
