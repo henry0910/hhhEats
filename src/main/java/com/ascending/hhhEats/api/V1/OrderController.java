@@ -3,6 +3,7 @@ package com.ascending.hhhEats.api.V1;
 import com.ascending.hhhEats.domain.Order;
 import com.ascending.hhhEats.service.OrderService;
 
+import com.ascending.hhhEats.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

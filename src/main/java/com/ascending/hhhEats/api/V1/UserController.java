@@ -2,10 +2,11 @@ package com.ascending.hhhEats.api.V1;
 
 import com.ascending.hhhEats.domain.AuthenticationRequest;
 import com.ascending.hhhEats.domain.User;
+import com.ascending.hhhEats.extend.exp.NotFoundException;
 import com.ascending.hhhEats.extend.security.JwtTokenUtil;
 import com.ascending.hhhEats.service.RestaurantService;
 import com.ascending.hhhEats.service.UserService;
-import javassist.NotFoundException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,15 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.parameters.P;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -78,14 +83,20 @@ public class UserController {
             );
             final Authentication authentication = authenticationManager.authenticate(notFullyAuthenticated);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            final UserDetails userDetails = userService.findByUsername(authenticationRequest.getUsername()).get();
-            final String token = jwtTokenUtil.generateToken(userDetails);
-            return ResponseEntity.ok(token);
-//            try {
-//                final UserDetails userDetails = userService.findByUsername(authenticationRequest.getUsername()).get();
-//                final String token = jwtTokenUtil.generateToken(userDetails);
-//                return ResponseEntity.ok(token);
-//            }
+//            final UserDetails userDetails = userService.findByUsername(authenticationRequest.getUsername()).get();
+//            final String token = jwtTokenUtil.generateToken(userDetails);
+//            return ResponseEntity.ok(token);
+            try {
+                final UserDetails userDetails = userService.findByUsername(authenticationRequest.getUsername()).get();
+                final String token = jwtTokenUtil.generateToken(userDetails);
+                Map<String, String> res = new HashMap<>();
+                res.put("token",token);
+                return ResponseEntity.ok(res);
+            }
+            catch (NotFoundException ex) {
+                logger.error("System can't find user by username", ex);
+                return ResponseEntity.notFound().build();
+            }
 //            catch (NotFoundException e) {
 //                logger.error("System can't find user by username", e);
 //                return ResponseEntity.notFound().build();
@@ -93,7 +104,7 @@ public class UserController {
 //            return ResponseEntity.ok("login successfully");
         }
         catch (AuthenticationException e) {
-            logger.error("System can't find user nby email or username", e);
+            logger.error("System can't find user by email or username", e);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("authentication");
         }
     }
@@ -114,8 +125,13 @@ public class UserController {
     // url: /api/user/?username = username
     @RequestMapping(method = RequestMethod.GET, params = {"username"})
     public User getUserById(@RequestParam("username") String username) {
-        Optional<User> user = userService.findByUsername(username);
-        return user.get();
+        try {
+            Optional<User> user = userService.findByUsername(username);
+            return user.get();
+        }
+        catch (NotFoundException ex) {
+            return null;
+        }
     }
 
 

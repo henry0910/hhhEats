@@ -2,7 +2,9 @@ package com.ascending.hhhEats.service;
 
 import com.ascending.hhhEats.domain.Authority;
 import com.ascending.hhhEats.domain.User;
+import com.ascending.hhhEats.extend.exp.NotFoundException;
 import com.ascending.hhhEats.repository.UserRepository;
+import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,8 +29,10 @@ public class UserService extends CrudService<User,Long> {
         return this.userRepository;
     }
 
-    public Optional<User> findByUsername(String username) {
+    public Optional<User> findByUsername(String username) throws NotFoundException {
+        if (username == null || username.length() == 0) throw new NotFoundException();
         Optional<User> user = userRepository.findByUsername(username);
+        if (user.get() == null) throw new NotFoundException();
         return user;
     }
 

@@ -2,6 +2,7 @@ package com.ascending.hhhEats.extend.security;
 
 import com.ascending.hhhEats.domain.Authority;
 import com.ascending.hhhEats.domain.User;
+import com.ascending.hhhEats.extend.exp.NotFoundException;
 import com.ascending.hhhEats.service.AuthorityService;
 import com.ascending.hhhEats.service.UserService;
 import org.slf4j.Logger;
@@ -28,8 +29,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         logger.debug("This is load user by username.");
-        User domainUser = userService.findByUsername(s).get();
-        return setUserAuthority(domainUser);
+        try {
+            User domainUser = userService.findByUsername(s).get();
+            return setUserAuthority(domainUser);
+        }
+        catch (NotFoundException ex) {
+            return null;
+        }
+
     }
 
     private UserDetails setUserAuthority(User user) {
