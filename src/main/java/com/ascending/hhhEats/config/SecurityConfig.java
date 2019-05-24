@@ -1,5 +1,6 @@
 package com.ascending.hhhEats.config;
 
+import com.ascending.hhhEats.extend.security.JwtAuthenticationFilter;
 import com.ascending.hhhEats.extend.security.RestAuthenticationEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
     @Autowired
     private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+
+    private JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter();
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
