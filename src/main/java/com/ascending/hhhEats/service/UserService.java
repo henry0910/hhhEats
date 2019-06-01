@@ -4,7 +4,6 @@ import com.ascending.hhhEats.domain.Authority;
 import com.ascending.hhhEats.domain.User;
 import com.ascending.hhhEats.extend.exp.NotFoundException;
 import com.ascending.hhhEats.repository.UserRepository;
-import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
