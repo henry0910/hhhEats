@@ -12,18 +12,30 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import javax.transaction.Transactional;
 import java.io.File;
 
+import static junit.framework.TestCase.assertEquals;
+
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
 @ActiveProfiles("Unit")
-public class UploadObjectTest {
+public class StorageServiceTest {
     @Autowired
-    private UploadObject uploadObject;
+    private StorageService storageService;
 
     @Test
     @Transactional
     public void uploadObjectTest() {
         File f = new File("unittest.txt");
-        uploadObject.uploadObject("hhheats", f);
+        storageService.uploadObject("hhheats", f);
+    }
+
+    @Test
+    @Transactional
+    public void getObjectTest() {
+        String bucketName = "hhheats";
+        String key = "unittest.txt";
+        String result = storageService.getObject(bucketName, key);
+        String url = "https://" + bucketName + ".s3.amazonaws.com/" + key;
+        assertEquals(result, url);
     }
 }
