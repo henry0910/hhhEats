@@ -1,12 +1,12 @@
 package com.ascending.hhhEats.config;
 
+import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
+import org.springframework.context.annotation.*;
 import org.springframework.core.io.ClassPathResource;
 
 
@@ -22,5 +22,15 @@ public class AppConfig {
         PropertiesFactoryBean bean = new PropertiesFactoryBean();
         bean.setLocation(new ClassPathResource("META-INF/share-runtime.properties"));
         return bean;
+    }
+    @Bean(name = "AmazonS3")
+    @Profile({"dev","test"})
+    public AmazonS3 getAmazonS3bean() {
+        String clientRegion = "us-east-1";
+        AmazonS3 s3 = AmazonS3ClientBuilder.standard()
+                .withRegion(clientRegion)
+                .withCredentials(new DefaultAWSCredentialsProviderChain())
+                .build();
+        return s3;
     }
 }
