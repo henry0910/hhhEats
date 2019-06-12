@@ -22,7 +22,7 @@ import static junit.framework.TestCase.assertNotNull;
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles("Unit")
+@ActiveProfiles("unit")
 public class DishServiceTest {
     @Autowired
     private DishService dishService;

@@ -21,7 +21,7 @@ import static org.junit.Assert.assertEquals;
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles("Unit")
+@ActiveProfiles("unit")
 public class CategoryServiceTest {
     @Autowired
     private CategoryService categoryService;

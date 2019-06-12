@@ -7,6 +7,7 @@ import com.ascending.hhhEats.extend.exp.NotFoundException;
 import com.ascending.hhhEats.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.omg.CosNaming.NamingContextPackage.NotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import javax.transaction.Transactional;
+import java.net.URL;
 import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
@@ -24,7 +26,7 @@ import static junit.framework.TestCase.assertNotNull;
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles("Unit")
+@ActiveProfiles("unit")
 public class UserServiceTest {
     @Autowired
     private UserService userService;
@@ -45,6 +47,7 @@ public class UserServiceTest {
     public void findByUsernameTest() throws NotFoundException {
         User u = new User("tjshen");
         userService.save(u);
+//        URL url = Mockito.mock(URL.class);
         Optional<User> testUser = userService.findByUsername(u.getUsername());
         assertEquals(u.getUsername(), testUser.get().getUsername());
     }

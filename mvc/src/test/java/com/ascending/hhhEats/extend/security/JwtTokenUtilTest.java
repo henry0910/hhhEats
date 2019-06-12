@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 @WebAppConfiguration
 @ContextConfiguration(classes = {AppConfig.class })
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles("Unit")
+@ActiveProfiles("unit")
 public class JwtTokenUtilTest {
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
