@@ -47,7 +47,7 @@ public class UserServiceTest {
     public void findByUsernameTest() throws NotFoundException {
         User u = new User("tjshen");
         userService.save(u);
-//        URL url = Mockito.mock(URL.class);
+        URL url = Mockito.mock(URL.class);
         Optional<User> testUser = userService.findByUsername(u.getUsername());
         assertEquals(u.getUsername(), testUser.get().getUsername());
     }

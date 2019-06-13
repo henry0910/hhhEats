@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.ascending.hhhEats.config.AppConfig;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.mockito.Mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ActiveProfiles;
@@ -42,9 +43,13 @@ public class StorageServiceTest {
     public void getObjectTest() {
         String bucketName = "123";
         String key = "123.png";
-        String url = storageService.getObject(bucketName, key);
-        when(url).thenReturn("327464489");
+        URL url = Mockito.mock(URL.class);
+        when(s3Fake.getUrl(anyString(), anyString())).thenReturn(url);
+        storageService.getObject(bucketName, key);
         verify(s3Fake, times(1)).getUrl(anyString(), anyString());
+//        String url = storageService.getObject(bucketName, key);
+//        when(url).thenReturn("327464489");
+//        verify(s3Fake, times(1)).getUrl(anyString(), anyString());
 //        String bucketName = "hhheats";
 //        String key = "unittest.txt";
 //        s3Fake
