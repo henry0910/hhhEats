@@ -4,6 +4,7 @@ import com.ascending.hhhEats.domain.Authority;
 import com.ascending.hhhEats.domain.User;
 import com.ascending.hhhEats.extend.exp.NotFoundException;
 import com.ascending.hhhEats.repository.UserRepository;
+import com.ascending.hhhEats.service.jms.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +21,9 @@ public class UserService extends CrudService<User,Long> {
 
     @Autowired
     private AuthorityService authorityService;
+
+    @Autowired
+    private MessageService messageService;
 
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 

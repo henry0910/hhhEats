@@ -6,6 +6,7 @@ import com.ascending.hhhEats.extend.exp.NotFoundException;
 import com.ascending.hhhEats.extend.security.JwtTokenUtil;
 import com.ascending.hhhEats.service.RestaurantService;
 import com.ascending.hhhEats.service.UserService;
+import com.ascending.hhhEats.service.jms.MessageService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,13 +31,15 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = {"/api/users", "/api/user"}, produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = {"/api/users", "/api/user"})
 public class UserController {
     private BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Autowired
     private UserService userService;
     @Autowired
     private RestaurantService restaurantService;
+    @Autowired
+    private MessageService messageService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -58,6 +61,12 @@ public class UserController {
     public User signUpUser(@RequestBody User user) {
         userService.createUser(user);
         return user;
+    }
+
+    @RequestMapping(value = "/email", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void sendMessage(@RequestParam(value = "user_id") Long user_id) {
+        messageService.sendMessage("hello world" + String.valueOf(user_id), 5);
     }
 
 //    @RequestMapping(value = "/login", method = RequestMethod.POST)

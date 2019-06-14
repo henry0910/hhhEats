@@ -3,6 +3,8 @@ package com.ascending.hhhEats.config;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import com.amazonaws.services.sqs.AmazonSQS;
+import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
@@ -32,5 +34,10 @@ public class AppConfig {
                 .withCredentials(new DefaultAWSCredentialsProviderChain())
                 .build();
         return s3;
+    }
+    @Bean(name = "AmazonSQS")
+    public AmazonSQS getAmazonSQS() {
+        AmazonSQS client = AmazonSQSClientBuilder.standard().withCredentials(new DefaultAWSCredentialsProviderChain()).build();
+        return client;
     }
 }
