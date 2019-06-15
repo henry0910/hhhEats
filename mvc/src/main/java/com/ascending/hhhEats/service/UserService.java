@@ -15,13 +15,10 @@ import java.util.Optional;
 
 @Service
 public class UserService extends CrudService<User,Long> {
-
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private AuthorityService authorityService;
-
     @Autowired
     private MessageService messageService;
 
