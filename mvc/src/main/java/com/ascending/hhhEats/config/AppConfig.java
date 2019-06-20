@@ -26,7 +26,7 @@ public class AppConfig {
         return bean;
     }
     @Bean(name = "AmazonS3")
-    @Profile({"dev","test"})
+    @Profile({"dev","test", "prod"})
     public AmazonS3 getAmazonS3bean() {
         String clientRegion = "us-east-1";
         AmazonS3 s3 = AmazonS3ClientBuilder.standard()
@@ -36,6 +36,7 @@ public class AppConfig {
         return s3;
     }
     @Bean(name = "AmazonSQS")
+    @Profile({"dev","test", "prod"})
     public AmazonSQS getAmazonSQS() {
         AmazonSQS client = AmazonSQSClientBuilder.standard().withCredentials(new DefaultAWSCredentialsProviderChain()).build();
         return client;

@@ -1,8 +1,7 @@
 package com.ascending.hhhEats.service.jms;
 
-import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
+import com.amazonaws.services.sqs.model.GetQueueUrlResult;
 import com.amazonaws.services.sqs.model.SendMessageRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,7 +18,8 @@ public class MessageService {
     }
 
     public String getQueueUrl(String queueName) {
-        String queueUrl = sqs.getQueueUrl(queueName).getQueueUrl();
+        GetQueueUrlResult result = sqs.getQueueUrl(queueName);
+        String queueUrl = result.getQueueUrl();
         return queueUrl;
     }
 
